@@ -17,7 +17,7 @@
         <div class="container px-5 my-5">
         <form id="contactForm" action=".php" method="POST">
         <div class="form-floating mb-3">
-            <select class="form-select" id="category" aria-label="Category" required >
+            <select class="form-select" name="category" aria-label="Category" required >
                 <option value=""></option>
                 <option value="Electrical">Electrical</option>
                 <option value="Plumbing">Plumbing</option>
@@ -26,19 +26,19 @@
             <label for="category">Category</label>
         </div>
         <div class="form-floating mb-3">
-            <input class="form-control" id="location" type="text" placeholder="Location" required />
+            <input class="form-control" name="location" type="text" placeholder="Location" required />
             <label for="location">Location</label>
         </div>
         <div class="form-floating mb-3">
-            <input class="form-control" id="description" type="text" placeholder="Description" required />
+            <input class="form-control" name="description" type="text" placeholder="Description" required />
             <label for="description">Description</label>
         </div>
         <div class="form-floating mb-3">
-            <input class="form-control" id="date" type="date" placeholder="Date" required />
+            <input class="form-control" name="date" type="date" placeholder="Date" required />
             <label for="date">Date</label>
         </div>
         <div class="d-grid">
-            <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button>
+            <button class="btn btn-primary btn-lg" name="submitButton" type="submit">Submit</button>
         </div>
     </form>
 </div>
