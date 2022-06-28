@@ -13,20 +13,31 @@
         header("refresh:0;url=register.php?error=true");
     }
 
-    $registersql = "INSERT INTO credentials (email, password, usertype) VALUES ('$email', '$password', $stuff)";
-    $registeruser = mysqli_query($conn, $registersql);
-    if (!$registeruser) {
-        echo mysqli_error($conn);
-        die();
-  }
+    $sql="select * from credentials WHERE email='$email'";  
+    
+    $run=mysqli_query($conn,$sql);  
 
-    $registersql = "SELECT cred_id FROM credentials";
+    if(mysqli_num_rows($run)) 
+    {
+        echo "<script type=\"text/javascript\">alert('Account already exist')</script>";
+        header('refresh:0;register.php');
+        die();
+    }
+
+    $registersql = "SELECT `AUTO_INCREMENT`FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '$database' AND TABLE_NAME = 'credentials'";
     $registeruser = mysqli_query($conn, $registersql);
     if (!$registeruser) {
         echo mysqli_error($conn);
         die();
     } 
     $credid= mysqli_fetch_array($registeruser);
+
+    $registersql = "INSERT INTO credentials (email, password, usertype) VALUES ('$email', '$password', $stuff)";
+    $registeruser = mysqli_query($conn, $registersql);
+    if (!$registeruser) {
+        echo mysqli_error($conn);
+        die();
+  }
 
     if ($stuff==0){
         //student
@@ -45,6 +56,7 @@
             echo mysqli_error($conn);
             die();
         }
+
     }
     header('refresh:0;login.php');
 ?>
