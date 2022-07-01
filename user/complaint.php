@@ -14,8 +14,10 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         <?php include "../inc/header.php" ?>
         <h1 class="px-5 py-3">Make A Complaint</h1>
+        <div class = "px-5">
+            <button type="button" class="btn btn-primary" onclick="location.href='/student_complaint_system/user/index.php'">Back</button>
         <div class="container px-5 my-5">
-        <form id="contactForm" action=".php" method="POST">
+        <form id="contactForm" action="complaintdata.php" method="POST">
         <div class="form-floating mb-3">
             <select class="form-select" name="category" aria-label="Category" required >
                 <option value=""></option>

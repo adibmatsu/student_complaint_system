@@ -14,8 +14,17 @@
         </ul>
 
         <div class="text-end">
-          <button type="button" class="btn btn-outline-light me-2" onclick="location.href='/student_complaint_system/login.php'">Login</button>
-          <button type="button" class="btn btn-warning" onclick="location.href='/student_complaint_system/register.php'">Sign-up</button>
+          <?php
+
+          if (isset($_SESSION['credid'])) {
+            //tochangelogintologout
+            echo "<button type=\"button\" class=\"btn btn-outline-light me-2\" onclick=\"location.href='/student_complaint_system/logoutdata.php'\">Logout</button>";
+          } else {
+            echo "<button type=\"button\" class=\"btn btn-outline-light me-2\" onclick=\"location.href='/student_complaint_system/login.php'\">Login</button>";
+            echo "<button type=\"button\" class=\"btn btn-warning\" onclick=\"location.href='/student_complaint_system/register.php'\">Sign-up</button>";
+          }
+
+          ?>
         </div>
       </div>
     </div>

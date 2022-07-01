@@ -25,7 +25,7 @@
                 <label for="emailAddress">Email Address</label>
             </div>
             <div class="form-floating mb-3">
-                <input class="form-control" name="phoneNumber" type="text" placeholder="Phone Number" required />
+                <input class="form-control" name="phoneNumber" type="number" placeholder="Phone Number" required />
                 <label for="phoneNumber">Phone Number</label>
             </div>
             <div class="form-floating mb-3">
@@ -37,7 +37,7 @@
                 <label for="studentStaff">Student/Staff</label>
             </div>
             <div class="form-floating mb-3">
-                <input class="form-control" name="idNumber" type="text" placeholder="ID Number" required />
+                <input class="form-control" name="idNumber" type="number" placeholder="ID Number" required />
                 <label for="idNumber">ID Number</label>
             </div>
             <div class="form-floating mb-3">
