@@ -15,7 +15,7 @@
         <?php include "../inc/header.php" ?>
         <h1 class="py-3 ps-3">Welcome, Admin, to Student complaint system!</h1>
         <div class = "px-5">
-            <button type="button" class="btn btn-primary" onclick="location.href='/student_complaint_system/user/view.php'">View Complaint</button>
+            <button type="button" class="btn btn-primary" onclick="location.href='/student_complaint_system/admin/view.php'">View Complaint</button>
             <button type="button" class="btn btn-primary" onclick="location.href='/student_complaint_system/user/view.php'">Add Officer</button>
             <button type="button" class="btn btn-primary" onclick="location.href='/student_complaint_system/user/view.php'">Add Admin</button>
         </div>
