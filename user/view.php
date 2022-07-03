@@ -1,5 +1,7 @@
 <?php
     session_start();
+    $usersession = $_SESSION['userid'];
+    include("../inc/conn.php");
 ?>
 
 <!DOCTYPE HTML>
@@ -17,19 +19,51 @@
         <div class = "px-5">
             <button type="button" class="btn btn-primary" onclick="location.href='/student_complaint_system/user/index.php'">Back</button>
             <div class="container px-5 my-5">
-            <table>
+            <table class="table">
+            <thead>
                 <tr>
-                    <th>Category</th>
-                    <th>Location</th>
-                    <th>Description</th>
-                    <th>Date</th>
+                <th scope="col">No.</th>
+                <th scope="col">Category</th>
+                <th scope="col">Location</th>
+                <th scope="col">Description</th>
+                <th scope="col">Date</th>
                 </tr>
+            </thead>
+            <tbody>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                </table>
+                    <?php
+                //untuk view dalam database
+                //mysqli_num_rows($run)
+
+                    $viewsql ="SELECT `comp_cat`, `comp_loct`, `comp_desc`, `comp_date` FROM `complaints` WHERE user_id = $usersession";
+                    $run=mysqli_query($conn,$viewsql);
+                    if(!is_bool($run)){
+                        $compuser = mysqli_fetch_all($run);
+                        if (sizeof($compuser)>0){
+                            for($i=0; $i<sizeof($compuser);$i++ ){
+                                echo "<tr>";
+                                $compnum=$i+1;
+                                echo "<th scope=\"row\">".$compnum."</th>";
+                                foreach($compuser[$i] as $catcomp){
+                                    echo "<td>$catcomp</td>";
+                                }
+                                echo "</tr>";
+                            }
+                        } else {
+                            //run bila ada erro
+                            echo "<tr>";
+                            echo "<td style = \"text-align: center;\" colspan = \"5\">Doesn't Have Complaint Yet!</td>";
+                            echo "</tr>";
+                        }
+                    } else {
+                        echo "<tr>";
+                        echo "<td style = \"text-align: center;\" colspan = \"5\">Error Occured</td>";
+                        echo "</tr>";
+                    }
+                
+                ?>
+            </tbody>
+            </table>
         </div>
     </body>
 </html>
