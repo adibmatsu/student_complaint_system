@@ -14,7 +14,7 @@
     <body>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         <?php include "../inc/header.php" ?>
-        <h1 class="py-3">User Complaint Status!</h1>
+        <h1 class="py-3">Admin list!</h1>
         <div class = "px-5">
             <button type="button" class="btn btn-primary" onclick="location.href='/student_complaint_system/admin/index.php'">Back</button>
             <div class="container px-5 my-5">
@@ -23,30 +23,30 @@
                 <tr>
                 <th scope="col">No.</th>
                 <th scope="col">Email</th>
-                <th scope="col">Category</th>
-                <th scope="col">Location</th>
-                <th scope="col">Description</th>
-                <th scope="col">Date</th>
-                <th scope="col">Status</th>
+                <th scope="col">Name</th>
+                <th scope="col">ID Number</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <?php
-                //untuk view dalam database
+                //untuk view admin dalam database
                 //mysqli_num_rows($run)
 
-                    $viewsql ="SELECT cr.email, c.comp_cat, c.comp_loct, c.comp_desc, c.comp_date FROM complaints AS c JOIN users AS u ON c.user_id = u.user_id JOIN credentials as cr ON u.cred_id = cr.cred_id";
-                    $run=mysqli_query($conn,$viewsql);
+                    $viewadmin ="SELECT cr.email, ad.ad_name, ad.adminno FROM admins AS ad JOIN credentials AS cr ON cr.cred_id = ad.cred_id";
+                    $run=mysqli_query($conn,$viewadmin);
                     if(!is_bool($run)){
-                        $compuser = mysqli_fetch_all($run);
-                        if (sizeof($compuser)>0){
-                            for($i=0; $i<sizeof($compuser);$i++ ){
+                        $viewadmin = mysqli_fetch_all($run);
+                        if (sizeof($viewadmin)>0){
+                            for($i=0; $i<sizeof($viewadmin);$i++ ){
                                 echo "<tr>";
-                                $compnum=$i+1;
-                                echo "<th scope=\"row\">".$compnum."</th>";
-                                foreach($compuser[$i] as $catcomp){
-                                    echo "<td>$catcomp</td>";
+                                $viewnum=$i+1;
+                                echo "<th scope=\"row\">".$viewnum."</th>";
+                                foreach($viewadmin[$i] as $catview){
+                                    if ($catview != null){       
+                                        echo "<td>$catview</td>";
+                                    }
+
                                 }
                                 echo "</tr>";
                             }
