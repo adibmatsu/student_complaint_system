@@ -62,7 +62,6 @@
                                 foreach($compuser[$rowno] as $colnum => $catcomp){
                                     if ($colnum == sizeof($compuser[$rowno])){
                                         if ($catcomp = null);
-                                        echo 
                                         
                                     } else {
                                         echo "<td>$catcomp</td>";
