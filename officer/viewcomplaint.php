@@ -28,6 +28,7 @@
                 <th scope="col">Description</th>
                 <th scope="col">Date</th>
                 <th scope="col">Status</th>
+                <th scope="col">Approve/Deny</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,7 +38,7 @@
                 //mysqli_num_rows($run)
 
                     //tulis code sql untuk query
-                    $viewsql ="SELECT cr.email, c.comp_cat, c.comp_loct, c.comp_desc, c.comp_date, c.comp_status FROM complaints AS c JOIN users AS u ON c.user_id = u.user_id JOIN credentials as cr ON u.cred_id = cr.cred_id";
+                    $viewsql ="SELECT c.comp_id, cr.email, c.comp_cat, c.comp_loct, c.comp_desc, c.comp_date, c.comp_status FROM complaints AS c JOIN users AS u ON c.user_id = u.user_id JOIN credentials as cr ON u.cred_id = cr.cred_id";
                     //run sql
                     $run=mysqli_query($conn,$viewsql);
                     //kalau $run bukan true/false  
@@ -59,9 +60,24 @@
                                 //untuk setiap column dalam row ini set kan dalam $catcomp
                                 //[]untuk select
                                 //foreach
+                                $comp_id = $compuser[$rowno][0];
                                 foreach($compuser[$rowno] as $colnum => $catcomp){
-                                    if ($colnum == sizeof($compuser[$rowno])){
-                                        if ($catcomp = null);
+                                    if($colnum == 0) {
+                                        //delete first column
+                                    } else if ($colnum == 6 /*sizeof($compuser[$rowno])*/){
+                                        if ($catcomp == null){
+                                            $statusStr= "Not approved/rejected";
+                                            echo "<td>$statusStr</td>";
+                                            echo "<td><button type=\"button\" class=\"btn btn-success\" onclick=\"location.href='/student_complaint_system/officer/approvecomplaint.php?status=0&comp_id=".$comp_id."'\">Approve Complaint</button><br><button type=\"button\" class=\"btn btn-danger\" onclick=\"location.href='/student_complaint_system/officer/approvecomplaint.php?status=1&comp_id=".$comp_id."'\">Reject Complaint</button></td>";
+                                        } else if($catcomp == 0){
+                                            $statusStr = "Approved";
+                                            echo "<td>$statusStr</td>";
+                                            echo "<td>$statusStr</td>";
+                                        } else if($catcomp == 1){
+                                            $statusStr = "Rejected";
+                                            echo "<td>$statusStr</td>";
+                                            echo "<td>$statusStr</td>";
+                                        }
                                         
                                     } else {
                                         echo "<td>$catcomp</td>";
