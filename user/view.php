@@ -60,7 +60,7 @@
                                     } else {
                                         echo "<td>$catcomp</td>";
                                     }
-                                    
+                                    //to view status approve and reject
                                 }
                                 echo "</tr>";
                             }
