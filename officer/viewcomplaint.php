@@ -48,7 +48,7 @@
                         $compuser = mysqli_fetch_all($run);
                         //kira size $compuser, kalau <= 0 maksudnya result 0
                         if (sizeof($compuser)>0){
-                            //bila $i=0 selagi $i kurang daripada size $compuser ulang excute
+                            //bila $i=0 selagi $i kurang daripada saiz $compuser ulang excute
                             //bila akhir execution +1 pada $i
                             for($rowno=0; $rowno<sizeof($compuser);$rowno++ ){
                                 //memulakan row ini
