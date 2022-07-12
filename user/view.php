@@ -27,6 +27,7 @@
                 <th scope="col">Location</th>
                 <th scope="col">Description</th>
                 <th scope="col">Date</th>
+                <th scope="col">Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,7 +36,7 @@
                 //untuk view dalam database
                 //mysqli_num_rows($run)
 
-                    $viewsql ="SELECT `comp_cat`, `comp_loct`, `comp_desc`, `comp_date` FROM `complaints` WHERE user_id = $usersession";
+                    $viewsql ="SELECT `comp_cat`, `comp_loct`, `comp_desc`, `comp_date`, `comp_status` FROM `complaints` WHERE user_id = $usersession";
                     $run=mysqli_query($conn,$viewsql);
                     if(!is_bool($run)){
                         $compuser = mysqli_fetch_all($run);
@@ -44,8 +45,22 @@
                                 echo "<tr>";
                                 $compnum=$i+1;
                                 echo "<th scope=\"row\">".$compnum."</th>";
-                                foreach($compuser[$i] as $catcomp){
-                                    echo "<td>$catcomp</td>";
+                                foreach($compuser[$i] as $key=>$catcomp){
+                                    if ($key == 4) {
+                                        # code...
+                                        if($catcomp==""){
+                                            echo "<td>Pending</td>";
+                                        } else if($catcomp==0){
+                                            echo "<td>Approved</td>";
+                                        } else if($catcomp==1){
+                                            echo "<td>Rejected</td>";
+                                        } else {
+                                            echo "<td>Pending</td>";
+                                        }
+                                    } else {
+                                        echo "<td>$catcomp</td>";
+                                    }
+                                    
                                 }
                                 echo "</tr>";
                             }
