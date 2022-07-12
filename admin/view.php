@@ -36,7 +36,7 @@
                 //untuk view dalam database
                 //mysqli_num_rows($run)
 
-                    $viewsql ="SELECT cr.email, c.comp_cat, c.comp_loct, c.comp_desc, c.comp_date FROM complaints AS c JOIN users AS u ON c.user_id = u.user_id JOIN credentials as cr ON u.cred_id = cr.cred_id";
+                    $viewsql ="SELECT cr.email, c.comp_cat, c.comp_loct, c.comp_desc, c.comp_date, c.comp_status FROM complaints AS c JOIN users AS u ON c.user_id = u.user_id JOIN credentials as cr ON u.cred_id = cr.cred_id";
                     $run=mysqli_query($conn,$viewsql);
                     if(!is_bool($run)){
                         $compuser = mysqli_fetch_all($run);
@@ -45,8 +45,22 @@
                                 echo "<tr>";
                                 $compnum=$i+1;
                                 echo "<th scope=\"row\">".$compnum."</th>";
-                                foreach($compuser[$i] as $catcomp){
-                                    echo "<td>$catcomp</td>";
+                                foreach($compuser[$i] as $key=>$catcomp){
+                                    if ($key == 5) {
+                                        # code...
+                                        if($catcomp==""){
+                                            echo "<td>Pending</td>";
+                                        } else if($catcomp==0){
+                                            echo "<td>Approved</td>";
+                                        } else if($catcomp==1){
+                                            echo "<td>Rejected</td>";
+                                        } else {
+                                            echo "<td>Pending</td>";
+                                        }
+                                    } else {
+                                        echo "<td>$catcomp</td>";
+                                    }
+                                    
                                 }
                                 echo "</tr>";
                             }
