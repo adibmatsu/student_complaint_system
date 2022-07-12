@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 09, 2022 at 10:00 AM
+-- Generation Time: Jul 12, 2022 at 06:45 PM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `complaintdb`
 --
-CREATE DATABASE IF NOT EXISTS `complaintdb` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `complaintdb`;
 
 -- --------------------------------------------------------
 
@@ -68,13 +66,14 @@ CREATE TABLE `complaints` (
 INSERT INTO `complaints` (`comp_id`, `comp_cat`, `comp_loct`, `comp_desc`, `comp_date`, `comp_status`, `user_id`, `officer_id`) VALUES
 (1, 'Electrical', 'Bilik', 'lampu rosak', '2022-07-02', 0, 7, 1),
 (2, 'Plumbing', 'Tandas', 'Paip rosak', '2022-07-03', 1, 7, 1),
-(3, 'Furniture', 'Bilik', 'Katil patah', '2022-07-04', NULL, 7, NULL),
-(4, 'Furniture', 'Hallway', 'Rak kasut patah', '2022-07-09', NULL, 7, NULL),
-(5, 'Electrical', 'Bilik', 'kipas tercabut', '2022-07-02', NULL, 7, NULL),
-(6, 'Electrical', 'Tandas', 'lampu tandas kena air', '2022-07-02', NULL, 7, NULL),
-(7, 'Plumbing', 'Tandas', 'Paip bocor', '2022-07-04', NULL, 8, NULL),
-(8, 'Furniture', 'Bilik', 'tilam keras mcm batu', '2022-07-04', NULL, 9, NULL),
-(9, 'Plumbing', 'Tandas', 'paip bocor', '2022-07-09', NULL, 7, NULL);
+(3, 'Furniture', 'Bilik', 'Katil patah', '2022-07-04', 1, 7, 1),
+(4, 'Furniture', 'Hallway', 'Rak kasut patah', '2022-07-09', 1, 7, 1),
+(5, 'Electrical', 'Bilik', 'kipas tercabut', '2022-07-02', 1, 7, 1),
+(6, 'Electrical', 'Tandas', 'lampu tandas kena air', '2022-07-02', 1, 7, 1),
+(7, 'Plumbing', 'Tandas', 'Paip bocor', '2022-07-04', 0, 8, 1),
+(8, 'Furniture', 'Bilik', 'tilam keras mcm batu', '2022-07-04', 1, 9, 1),
+(9, 'Plumbing', 'Tandas', 'paip bocor', '2022-07-09', NULL, 7, NULL),
+(10, 'Electrical', 'Bilik', 'Kipas terbakar', '2022-07-12', 0, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -101,7 +100,8 @@ INSERT INTO `credentials` (`cred_id`, `email`, `password`, `usertype`) VALUES
 (12, 'Najmi@gmail.com', '12345', 0),
 (14, 'izzul@officer.com', '12345', 2),
 (15, 'adib@officer.com', '12345', 2),
-(16, 'megat@admin.com', '12345', 3);
+(16, 'megat@admin.com', '12345', 3),
+(17, 'raaf@user.com', '1234', 0);
 
 -- --------------------------------------------------------
 
@@ -147,7 +147,8 @@ INSERT INTO `users` (`user_id`, `user_name`, `telno`, `studno`, `staffno`, `cred
 (6, 'syafiq2', 123456789, 2020878585, NULL, 7),
 (7, 'izzat', 1234567890, 2020862772, NULL, 9),
 (8, 'Hafiz', 123456789, NULL, 1020123456, 11),
-(9, 'Najmi', 123456765, 2023678321, NULL, 12);
+(9, 'Najmi', 123456765, 2023678321, NULL, 12),
+(10, 'Raaf', 104682880, 1005, NULL, 17);
 
 --
 -- Indexes for dumped tables
@@ -202,13 +203,13 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `complaints`
 --
 ALTER TABLE `complaints`
-  MODIFY `comp_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `comp_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `credentials`
 --
 ALTER TABLE `credentials`
-  MODIFY `cred_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `cred_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `officers`
@@ -220,7 +221,7 @@ ALTER TABLE `officers`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
