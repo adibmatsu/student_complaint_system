@@ -37,7 +37,7 @@
                 <label for="studentStaff">Student/Staff</label>
             </div>
             <div class="form-floating mb-3">
-                <input class="form-control" name="idNumber" type="number" placeholder="ID Number" required />
+                <input style="background-color: white;" class="form-control" name="idNumber" type="number" placeholder="ID Number" required />
                 <label for="idNumber">ID Number</label>
             </div>
             <div class="form-floating mb-3">
